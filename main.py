@@ -4,6 +4,8 @@ from twilio.rest import Client
 import datetime
 import json
 import re
+import os
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 # User data storage
 user_credentials = {}
@@ -346,7 +348,7 @@ async def show_numbers_by_command(update: Update, context: ContextTypes.DEFAULT_
 # Run the bot
 if __name__ == '__main__':
     print("Bot is running...")
-    app = ApplicationBuilder().token("7162054580:AAGnk9ptPBkCrWP4KjgPlISs-6M8srq1OzI").build()
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("buy", show_numbers_by_command))
     app.add_handler(CallbackQueryHandler(handle_button_click))
